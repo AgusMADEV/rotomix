@@ -7,26 +7,28 @@
 
 :root {
   /* Colores corporativos */
-  --primary:        #473A4F;    /* Fondo principal */
-  --secondary:      #E26E69;    /* Botones y destacados */
-  --accent:         #4F9ED6;    /* Elementos interactivos y foco */
+  --primary:        #45B7BD;   /* Fondo principal */
+  --secondary:      #D7723B;   /* Botones y destacados */
+  --accent:         #2C2A3E;   /* Elementos interactivos y foco */
 
   /* Tonos derivados */
   --background-color: var(--primary);
-  --panel-bg:         #3A2F3E; /* Variante oscura de primary */
-  --text-color:       #ECECEC; /* Claro para contraste */
-  --border-color:     #5A4E5C; /* Borde sutil */
-  
+  /* Opcionalmente podrías recalcular panel-bg como variante oscura de primary:
+     por ejemplo un 10–20% más oscuro */
+  --panel-bg:         #3A9EA5; /* Ajusta a tu gusto */
+  --text-color:       #ECECEC;
+  --border-color:     #5A4E5C;
+
   /* Botones y controles */
   --button-bg:       var(--secondary);
-  --button-hover-bg: #DA615C;
-  --button-active-bg:#C65550;
-  
+  --button-hover-bg: #C06230;
+  --button-active-bg:#A8572A;
+
   --input-bg:        #5A4E5C;
   --input-border:    var(--accent);
-  
+
   --control-bg:      #5A4E5C;
-  
+
   /* Fuente principal */
   --font-family: 'Poppins', sans-serif;
 }

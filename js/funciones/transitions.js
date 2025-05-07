@@ -53,7 +53,7 @@ function renderTransitionOnTimeline(transition) {
   div.style.height = '100%';
   // Estilos visuales
   div.style.backgroundColor = 'rgba(255,255,255,0.2)';
-  div.style.border = '2px dashed var(--accent-color)';
+  div.style.border = '2px dashed var(--accent)';
   div.style.boxSizing = 'border-box';
   div.innerHTML = `<span style="position:absolute; top:0; left:0; color: var(--accent-color); font-size:0.8em;">${transition.type}</span>`;
   tracksContainerEl.appendChild(div);
