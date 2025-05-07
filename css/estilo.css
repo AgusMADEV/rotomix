@@ -6,57 +6,80 @@
 }
 
 :root {
-  /* Colores base */
-  --background-color: #2F4F4F;     /* Fondo general */
-  --panel-bg: #3a4b52;             /* Fondo de paneles */
-  --text-color: #e0e0e0;           /* Texto claro */
-  --border-color: #708090;         /* Borde slate gray */
-  --accent-color: #90a4ae;         /* Acento */
+  /* Colores corporativos */
+  --primary:        #473A4F;    /* Fondo principal */
+  --secondary:      #E26E69;    /* Botones y destacados */
+  --accent:         #4F9ED6;    /* Elementos interactivos y foco */
+
+  /* Tonos derivados */
+  --background-color: var(--primary);
+  --panel-bg:         #3A2F3E; /* Variante oscura de primary */
+  --text-color:       #ECECEC; /* Claro para contraste */
+  --border-color:     #5A4E5C; /* Borde sutil */
   
   /* Botones y controles */
-  --button-bg: #546e7a;
-  --button-hover-bg: #455a64;
+  --button-bg:       var(--secondary);
+  --button-hover-bg: #DA615C;
+  --button-active-bg:#C65550;
   
-  --input-bg: #3a4b52;
-  --input-border: #708090;
+  --input-bg:        #5A4E5C;
+  --input-border:    var(--accent);
   
-  --control-bg: #455a64;
+  --control-bg:      #5A4E5C;
   
   /* Fuente principal */
-  --font-family: 'Ubuntu', sans-serif;
+  --font-family: 'Poppins', sans-serif;
 }
+
+/* Import Google Font Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
 /* === ESTILOS GLOBALES === */
 body {
   background-color: var(--background-color);
   color: var(--text-color);
   font-family: var(--font-family);
-  line-height: 1.5;
+  line-height: 1.6;
   padding: 1em;
 }
 
 h1, h2, h3 {
   color: var(--text-color);
-  margin-bottom: 0.5em;
+  font-weight: 500;
 }
-
+#corporativo{
+  display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: center;
+	align-content: stretch;
+}
+#corporativo img{
+  width: 5%;
+}
 /* === BOTONES === */
 button {
   background-color: var(--button-bg);
   color: var(--text-color);
-  border: 1px solid var(--border-color);
-  padding: 0.5em 1em;
-  border-radius: 4px;
+  border: none;
+  padding: 0.6em 1.2em;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.2s ease;
-  font-size: 1em;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  font-size: 0.95em;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.4);
 }
 button:hover {
   background-color: var(--button-hover-bg);
 }
+button:active {
+  background-color: var(--button-active-bg);
+  transform: translateY(1px);
+}
 button:focus {
   outline: none;
-  box-shadow: 0 0 0 2px var(--accent-color);
+  box-shadow: 0 0 0 3px var(--accent);
 }
 
 /* === INPUTS, TEXTAREAS, SELECTS === */
@@ -66,8 +89,8 @@ select {
   background-color: var(--input-bg);
   color: var(--text-color);
   border: 1px solid var(--input-border);
-  border-radius: 4px;
-  padding: 0.5em;
+  border-radius: 6px;
+  padding: 0.6em;
   font-size: 1em;
   transition: border-color 0.2s ease;
 }
@@ -75,12 +98,12 @@ input:focus,
 textarea:focus,
 select:focus {
   outline: none;
-  border-color: var(--accent-color);
+  border-color: var(--accent);
 }
 
 /* Enlaces */
 a {
-  color: var(--accent-color);
+  color: var(--accent);
   text-decoration: none;
 }
 a:hover {
@@ -88,12 +111,16 @@ a:hover {
 }
 
 /* === CONTENEDORES Y PANELES === */
-.container {
-  padding: 1em;
+.container,
+#container,
+#bottomPanel,
+#topPanelSingleRow,
+#paramFields,
+#transitionsPanel {
   background-color: var(--panel-bg);
   border: 1px solid var(--border-color);
-  border-radius: 4px;
-  margin: 1em 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
 
 /* === VENTANA PRINCIPAL (TIMELINE) === */
@@ -108,7 +135,6 @@ a:hover {
   align-items: center;
   padding: 0.8em;
   border-bottom: 1px solid var(--border-color);
-  background-color: var(--panel-bg);
 }
 #topPanelSingleRow button {
   margin-right: 0.5em;
@@ -119,8 +145,9 @@ a:hover {
   flex-direction: column;
   position: relative;
   overflow: hidden;
-  background-color: var(--background-color);
 }
+
+/* === ESCALA DE TIEMPO === */
 #timeScale {
   position: relative;
   width: 100%;
@@ -131,16 +158,16 @@ a:hover {
   user-select: none;
   flex-shrink: 0;
 }
+
+/* === PISTAS === */
 #tracksContainer {
   flex: 1 1 auto;
   position: relative;
-  overflow-x: auto;
-  overflow-y: hidden;
+  /*overflow-x: auto;
+  overflow-y: hidden;*/
   background-color: var(--background-color);
   padding: 1em;
 }
-
-/* Cada fila de pista */
 .trackRow {
   display: flex;
   align-items: center;
@@ -173,12 +200,12 @@ a:hover {
   top: 0;
   bottom: 0;
   width: 2px;
-  background-color: var(--accent-color);
+  background-color: var(--accent);
   pointer-events: none;
   z-index: 999;
 }
 .ghost-cursor {
-  background-color: rgba(144,164,174,0.5);
+  background-color: rgba(79,158,214,0.4);
 }
 
 /* Clips (video, imagen y audio) */
@@ -186,31 +213,38 @@ a:hover {
   position: absolute;
   height: 100%;
   border: 1px solid var(--border-color);
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: grab;
   user-select: none;
   overflow: hidden;
   background-size: cover;
   background-position: center;
-  transition: box-shadow 0.2s ease;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 .clip:hover {
-  box-shadow: 0 0 5px 2px var(--accent-color);
+  box-shadow: 0 0 10px var(--accent);
+  transform: translateY(-2px);
 }
 .clip-selected {
-  outline: 3px solid var(--accent-color);
+  outline: 3px solid var(--accent);
 }
 
-/* Estilo específico para clips de audio */
+/* Clips de audio */
 .audio-clip {
-  background: linear-gradient(45deg, #5a6d78, #708090);
+  background: linear-gradient(45deg, #5a4e5c, #473a4f);
   display: flex;
   align-items: center;
   justify-content: flex-start;
   position: relative;
 }
-
-/* Etiqueta de clip */
+.waveform {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+}
 .clip-label {
   position: relative;
   z-index: 2;
@@ -220,16 +254,6 @@ a:hover {
   font-size: 0.9em;
   pointer-events: none;
   white-space: nowrap;
-}
-
-/* Canvas de waveform en clips de audio */
-.waveform {
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  z-index: 1;
 }
 
 /* Handles para redimensionar clips */
@@ -245,6 +269,36 @@ a:hover {
 }
 .handle.left { left: 0; }
 .handle.right { right: 0; }
+
+/* === PANEL DE TRANSICIONES Y EFECTOS === */
+#transitionsPanel {
+  position: fixed;
+  right: 10px;
+  top: 150px;
+  width: 250px;
+  padding: 1em;
+  z-index: 2000;
+}
+#transitionsPanel h2 {
+  font-size: 1.2em;
+  margin-bottom: 0.5em;
+  text-align: center;
+}
+#transitionItem {
+  background-color: var(--secondary);
+  color: var(--text-color);
+  padding: 0.6em;
+  margin-bottom: 0.5em;
+  text-align: center;
+  border: none;
+  border-radius: 6px;
+  cursor: grab;
+  user-select: none;
+  transition: background-color 0.2s ease;
+}
+#transitionItem:hover {
+  background-color: var(--button-hover-bg);
+}
 
 /* === VENTANA DE MONITOR === */
 #previewCanvas {
@@ -289,56 +343,13 @@ progress {
 #paramFields {
   margin-top: 1em;
   padding: 1em;
-  background-color: var(--panel-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
+  border-radius: 8px;
 }
-.fieldGroup {
-  margin-bottom: 1em;
-}
+
+/* === TIPOGRAFÍA ADICIONAL Y AJUSTES MENORES === */
 label {
   display: block;
   margin-bottom: 0.5em;
   font-size: 0.9em;
 }
 
-/* === PANEL DE TRANSICIONES Y EFECTOS === */
-#transitionsPanel {
-  position: fixed;
-  right: 10px;
-  top: 150px;
-  width: 250px;
-  background-color: var(--panel-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  padding: 1em;
-  z-index: 2000;
-}
-#transitionsPanel h2 {
-  font-size: 1.2em;
-  margin-bottom: 0.5em;
-  text-align: center;
-}
-#transitionItem {
-  background-color: var(--button-bg);
-  color: var(--text-color);
-  padding: 0.5em;
-  text-align: center;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  cursor: grab;
-  user-select: none;
-  transition: background-color 0.2s ease;
-}
-#transitionItem:hover {
-  background-color: var(--button-hover-bg);
-}
-
-/* Elementos de transición en el timeline */
-.transition {
-  pointer-events: none;
-  z-index: 1000;
-}
-h1 img{
-width:50px;
-}
